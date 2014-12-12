@@ -24,6 +24,7 @@
 # ==============================================================================
 # PREAMBLE
 #
+library(argparse);
 library(bioinf);
 
 pr <- arg.parser("Convert GISTIC lesions file to segmentation file");
