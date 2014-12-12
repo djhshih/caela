@@ -16,6 +16,8 @@ pr.add_argument('-r', '--regex', help='regular expression pattern', default='.*'
 pr.add_argument('-d', '--delim', help='delimiting character', default='\t')
 pr.add_argument('-v', '--verbose', help='verbose output', action='store_const', dest='verbose', const=True, default=False)
 pr.add_argument('-n', '--dryrun', help='dry run', action='store_const', dest='dryrun', const=True, default=False)
+pr.add_argument('--src', help='column index of source identifier', default=0, type=int)
+pr.add_argument('--dest', help='column index of destination identifier', default=1, type=int)
 
 argv = pr.parse_args()
 
@@ -27,7 +29,7 @@ mapping = {}
 with open(argv.map, 'r') as mapf:
 	for line in mapf:
 		items = line.strip().split(argv.delim)
-		mapping[ items[0].strip() ] = items[1].strip()
+		mapping[ items[argv.src].strip() ] = items[argv.dest].strip()
 
 # create output directory
 if not os.path.exists(argv.outdir):
@@ -46,7 +48,7 @@ for f in files:
 		if fstem in mapping.keys():
 
 			if argv.verbose:
-				print('{} -> {}'.format(fstem, mapping[fstem]))
+				print('{} -> {}'.format(fstem + fext, mapping[fstem] + fext))
 
 			if not argv.dryrun:
 				os.symlink(
