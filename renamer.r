@@ -25,12 +25,12 @@ library(bioinf);
 
 p <- arg.parser("Map IDs within a data table")
 p <- add.argument(p, "src", "source file");
+p <- add.argument(p, "mapping", "mapping table");
 p <- add.argument(p, "--output", "output file");
-p <- add.argument(p, "--field", default="sample", "name of field containing the IDs");
+p <- add.argument(p, "--field", default="id", "name of field containing the IDs");
 p <- add.argument(p, "--noheader", default=FALSE, flag=TRUE, "source data table does not containg a header row");
-p <- add.argument(p, "--mapping", "mapping table");
-p <- add.argument(p, "--name_src", "source name");
-p <- add.argument(p, "--name_dest", "destination name");
+p <- add.argument(p, "--name_src", default="src", "source name");
+p <- add.argument(p, "--name_dest", dest="dest", "destination name");
 p <- add.argument(p, "--delimiter", default="\t", "delimiter in mapping file");
 
 
