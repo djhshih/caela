@@ -20,6 +20,7 @@ set(convert_SCRIPTS
 	aptpsum2snp.py
 	tsv2hdf5.py
 	txt2hdf5.py
+	sel-merge.py
 )
 
 # Installation
