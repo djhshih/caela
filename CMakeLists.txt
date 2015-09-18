@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(convert)
 
-set(CMAKE_INSTALL_PREFIX /usr/local)
-
 # Add executables
 add_executable(dchip2cn dchip2cn.cpp)
 add_executable(penn2seg penn2seg.cpp)
