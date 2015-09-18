@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(convert)
 
-set(CMAKE_INSTALL_PREFIX /usr/local/bin/bioinf/convert)
+set(CMAKE_INSTALL_PREFIX /usr/local)
 
 # Add executables
 add_executable(dchip2cn dchip2cn.cpp)
@@ -24,6 +24,6 @@ set(convert_SCRIPTS
 )
 
 # Installation
-install(TARGETS ${convert_EXECS} DESTINATION .)
-install(PROGRAMS ${convert_SCRIPTS} DESTINATION .) 
+install(TARGETS ${convert_EXECS} DESTINATION bin)
+install(PROGRAMS ${convert_SCRIPTS} DESTINATION bin) 
 
