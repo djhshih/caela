@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 project(convert)
 
 # Add executables
-add_executable(dchip2cn dchip2cn.cpp)
-add_executable(penn2seg penn2seg.cpp)
+add_executable(dchip2cn src/dchip2cn.cpp)
+add_executable(penn2seg src/penn2seg.cpp)
 
 set(convert_EXECS dchip2cn penn2seg)
 set(convert_SCRIPTS
