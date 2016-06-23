@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if (( $# < 1 )); then
+	echo "usage: $0 <package>"
+	exit 1
+fi
+
+package=$1
+
+if (( $# >= 2 )); then
+	script=$2
+else
+	script='*'
+fi
+
+DESTDIR=${DESTDIR:-$HOME/local}
+
+r_home=$(R --slave -e "cat(R.home())")
+
+install $r_home/library/$package/bin/$script $DESTDIR/bin
+
