@@ -6,7 +6,7 @@ library(magrittr);
 
 pr <- arg_parser("Convert call_stats to cov") %>%
 	add_argument("input", help="input file") %>%
-	add_argument("output", help="output file");
+	add_argument("--output", help="output file");
 
 argv <- parse_args(pr);
 
@@ -21,5 +21,10 @@ colnames(coverage) <- c(
 	"Chromosome",	"Start_position", "Reference_Allele", "Tumor_Seq_Allele1", 	"i_t_ref_count", "i_t_alt_count"
 );
 
-qwrite(coverage, argv$output, type="tsv");
+output <- argv$output;
+if (is.na(output)) {
+	output <- set_fext(argv$input, "cov");
+}
+
+qwrite(coverage, output, type="tsv");
 
