@@ -15,7 +15,7 @@ argv <- parse_args(pr);
 
 input <- qread(argv$input, type="tsv", stringsAsFactors=FALSE);
 
-if (!is.na(argv$snp)) {
+if (!is.na(argv$snp) && argv$snp != "") {
 	snp.set.str <- qread(argv$snp);
 } else {
 	snp.set.str <- NA;
