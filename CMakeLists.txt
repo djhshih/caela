@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(convert)
+project(caela)
 
 # Add executables
 add_executable(dchip2cn src/dchip2cn.cpp)
