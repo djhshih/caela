@@ -217,8 +217,9 @@ allelic_fraction_test <- function(alt_count, ref_count, prob = 0.5,
 
 		# we can calculate the sum lower tail and upper tail by doubling the lower tail; however,
 		# since P[X = x] is counted twice, subtract it
-		p <- 2 * pbinom(minor_count, total_count, prob, log=log) - 
-			dbinom(minor_count, total_count, prob, log=log);
+		p <- 2 * pbinom(minor_count, total_count, prob, log=FALSE) - 
+			dbinom(minor_count, total_count, prob, log=FALSE);
+		if (log) p <- log(p);
 
 	}
 
@@ -231,7 +232,7 @@ allelic_fraction_test <- function(alt_count, ref_count, prob = 0.5,
 pr <- arg_parser("Filter call_stats for germline heterozygous loci") %>%
 	add_argument("input", "input call_stats file") %>%
 	add_argument("output", "output call_stats file") %>%
-	add_argument("--snp", "reference SNP list file");
+	add_argument("--snp", "reference SNP list file (SNV format example: 1:13116T>G)");
 
 argv <- parse_args(pr);
 
