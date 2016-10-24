@@ -252,7 +252,7 @@ if (is.na(snp.set.str)) {
 }
 
 output1 <- input %>%
-	# keep only germline heterozygous sites
+	# keep only heterozygous sites from matched germline
 	filter(is_heterozygous(normal_best_gt)) %>%
 	# remove all likely artifacts
 	filter(!is_artifact(failure_reasons));
