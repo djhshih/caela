@@ -2,7 +2,7 @@
 
 # ==============================================================================
 # PURPOSE
-# To convert segmentation file between lienar and log2ratio scale
+# To convert segmentation file between linear and log2ratio scale
 #
 # @Author:   David JH Shih  (djh.shih@gmail.com)
 # @License:  GNU General Public License v3 
@@ -20,20 +20,21 @@
 # ==============================================================================
 # PREAMBLE
 #
-library(bioinf);
+library(io);
+library(argparser);
 
-p <- arg.parser("Convert segmentation file between linear and log2ratio scale");
-p <- add.argument(p, "input", "input file");
-p <- add.argument(p, "--output", "output file");
-p <- add.argument(p, "--scale", "scale of copy number state", "opposite");
-p <- add.argument(p, "--nocheck", "skip checking of the scale of the state", flag=TRUE);
-p <- add.argument(p, "--stateref", "reference state value", default=2);
-p <- add.argument(p, "--column", "state column name(s)", "state");
+p <- arg_parser("Convert segmentation file between linear and log2ratio scale");
+p <- add_argument(p, "input", "input file");
+p <- add_argument(p, "--output", "output file");
+p <- add_argument(p, "--scale", "scale of copy number state", "opposite");
+p <- add_argument(p, "--nocheck", "skip checking of the scale of the state", flag=TRUE);
+p <- add_argument(p, "--stateref", "reference state value", default=2);
+p <- add_argument(p, "--column", "state column name(s)", "state");
 
 # ==============================================================================
 # INPUT
 # 
-argv <- parse.args(p);
+argv <- parse_args(p);
 argv$column <- strsplit(argv$column, ",")[[1]];
 argv$stateref <- as.numeric(argv$stateref);
 
