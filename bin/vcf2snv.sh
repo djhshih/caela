@@ -2,15 +2,21 @@
 
 set -euo pipefail
 
-if [[ $# -lt 1 ]]; then
-	echo "usage $0 <n.vcf | in.vcf.gz> [out.snv]" >&2
+if [[ $# -ge 3 || $# -ge 1 && $1 == "-h" ]]; then
+	echo "usage $0 [in.vcf | in.vcf.gz] [out.snv]" >&2
 	exit 1
 fi
 
-infile=$1
+if [[ $# -ge 1 ]]; then
+	infile=$1
+else
+	infile=/dev/stdin
+fi
 
 if [[ $# -ge 2 ]]; then
 	outfile=$2
+else
+	outfile=/dev/stdout
 fi
 
 fname=${infile##*/}
@@ -27,3 +33,4 @@ fi
 
 printf 'chrom\tpos\tref\talt\n' > $outfile
 $cat $infile | grep -v '^#' | cut -f 1,2,4,5 >> $outfile
+
